@@ -1,3 +1,20 @@
+:root {
+    --points-width: 15px;
+    --gap: 100px;
+    --top-height: 100px;
+    --yb-border-width: 25px;
+    --yb-width: 50px;
+    --ghost-dimension: 50px;
+    --course-duration: 8s;
+    --mouth-opening-duration: 1s;
+    --eyb-move-duration: .5s;
+    --ghost-lead: 60px;
+    --emoji-color: #ffcb4c;
+    --emoji-color-darked: #664500;
+    --emoji-width: 150px;
+    --emoji-mouth-width: 40px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +32,7 @@ div.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: var(--gap);
     width: 100%;
     height: 100%;
 }
@@ -24,12 +41,257 @@ div.top {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     width: 98%;
-    height: 100px;
+    height: var(--top-height);
     background-color: black;
+    overflow: hidden;
 }
 
 div.points {
     width: 98%;
-    border-top: 10px dotted white;
+    border-top: var(--points-width) dotted white;
+}
+
+div.yellow-ball {
+    position: absolute;
+    left: -8%; 
+    border-top: var(--yb-border-width) solid yellow;
+    border-left: var(--yb-border-width) solid yellow;
+    border-bottom: var(--yb-border-width) solid yellow;
+    border-right: var(--yb-border-width) solid transparent;
+    border-radius: 50%;
+    animation: course var(--course-duration) infinite linear;
+}
+
+div.mouth-opening {
+    position: absolute;
+    left: 0;
+    top: -50%;
+}
+
+div.yb {
+    position: absolute;
+    left: -10px;
+    width: 30px;
+    height: 30px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    background-color: yellow;
+}
+
+div.yb1 {
+    top: -5px;
+    transform: rotate(45deg);
+    border-top-left-radius: 50%;
+    animation: mo1 .2s infinite linear alternate;
+}
+
+div.yb2 {
+    transform: rotate(45deg);
+    border-top-left-radius: 50%;
+    bottom: -5px;
+    animation: mo2 .2s infinite linear alternate;
+}
+
+@keyframes course {
+    from {
+        transform: translate(0);
+    }
+    to {
+        transform: translate(105vw);
+    }
+}
+
+@keyframes colorChanging {
+    from {
+        background-color: brown;
+    }
+    to {
+        background-color: green;
+    }
+}
+
+@keyframes mo1 {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(0);
+    }
+}
+
+@keyframes mo2 {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+div.ghost {
+    position: absolute;
+    left: -20px;
+    height: var(--ghost-dimension);
+    width: var(--ghost-dimension);
+    border-top-left-radius: var(--yb-border-width);
+    border-top-right-radius: var(--yb-border-width);
+    background-color: brown;
+    animation: course var(--course-duration) infinite linear,
+    colorChanging .5s infinite linear alternate;
+}
+
+div.ghost:after {
+    background: linear-gradient(-45deg, black 16px, brown 0), linear-gradient(45deg, black 16px, black 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 12px 32px;
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0px;
+    width: 100%;
+    height: 16px;
+}
+
+div.ey {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 12px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: 10px;
+}
+
+div.eye1 {
+    left: 10px;
+}
+
+div.eye2 {
+    right: 10px;
+}
+
+div.eyb {
+    height: 50%;
+    width: 50%;
+    border-radius: 50%;
+}
+
+div.eye-ball1 {
+    background-color: blue;
+    animation: eye-move var(--eyb-move-duration) infinite linear alternate;
+}
+
+div.eye-ball2 {
+    background-color: red;
+    animation: eye-move var(--eyb-move-duration) infinite linear alternate-reverse;
+}
+
+@keyframes eye-move {
+    0% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+div.emojis {
+    width: 60%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+div.emoji {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: var(--emoji-width);
+    width: var(--emoji-width);
+    border-radius: 50%;
+    background-color: var(--emoji-color);
+    box-shadow: inset 0px 0px 10px #b58200;
+}
+
+div.emoji1 {
+}
+
+div.emoji2 {
+}
+
+div.emoji3 {
+}
+
+div.em-eye {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 30px;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: inset 0px 0px 5px black;
+}
+
+div.em-eye1 {
+    left: 25px;
+}
+div.em-eye2 {
+    right: 25px;
+}
+
+div.em-eyb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+div.em-mouth {
+    position: absolute;
+    bottom: 30px;
+    width: var(--emoji-mouth-width);
+    border-top: 5px solid var(--emoji-color-darked);
+    border-bottom: 5px solid var(--emoji-color-darked);
+    border-radius: 50%;
+}
+
+div.em2-ey1 {
+    top: 50px;
+    height: 0px;
+    border-top: 10px solid var(--emoji-color-darked);
+}
+
+div.em2-ey1 > div.em-eyb1 {
+    display: none;
+}
+
+div.em2-ey2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.em3-eyb {
+    background-color: var(--emoji-color-darked);
+    position: absolute;
+    top: 50px;
+    height: 20px;
+}
+
+div.em3-eyb.em-eyb1 {
+    left: 30px;
+}
+
+div.em3-eyb.em-eyb2 {
+    right: 30px;
 }
