@@ -9,10 +9,13 @@
     --mouth-opening-duration: 1s;
     --eyb-move-duration: .5s;
     --ghost-lead: 60px;
-    --emoji-color: #ffcb4c;
+    --emoji-color: rgb(255, 203, 76);
     --emoji-color-darked: #664500;
+    --emoji-linear-gradient: linear-gradient(rgba(255, 203, 76), rgb(173, 119, 1));
     --emoji-width: 150px;
     --emoji-mouth-width: 40px;
+    --mouth-polygon: polygon(50% 50%, 100% -5%, 100% 0%);
+    --mouth-polygon2: polygon(50% 50%, 100% 105%, 100% 100%);
 }
 
 * {
@@ -55,43 +58,38 @@ div.points {
 
 div.yellow-ball {
     position: absolute;
-    left: -8%; 
-    border-top: var(--yb-border-width) solid yellow;
-    border-left: var(--yb-border-width) solid yellow;
-    border-bottom: var(--yb-border-width) solid yellow;
+    left: -8%;
+    border: var(--yb-border-width) solid yellow;
     border-right: var(--yb-border-width) solid transparent;
+    /* width: var(--yb-width);
+    height: var(--yb-width); */
+    /* background-color: yellow; */
     border-radius: 50%;
     animation: course var(--course-duration) infinite linear;
 }
 
 div.mouth-opening {
     position: absolute;
-    left: 0;
-    top: -50%;
-}
-
-div.yb {
-    position: absolute;
-    left: -10px;
-    width: 30px;
-    height: 30px;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
+    top: -25px;
+    left: -25px;
+    width: var(--yb-width);
+    height: var(--yb-width);
     background-color: yellow;
+    border-radius: 50%;
+    clip-path: var(--mouth-polygon);
+    animation: mouthOpening .5s infinite alternate-reverse;
 }
 
-div.yb1 {
-    top: -5px;
-    transform: rotate(45deg);
-    border-top-left-radius: 50%;
-    animation: mo1 .2s infinite linear alternate;
-}
-
-div.yb2 {
-    transform: rotate(45deg);
-    border-top-left-radius: 50%;
-    bottom: -5px;
-    animation: mo2 .2s infinite linear alternate;
+div.mouth-closing {
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    width: var(--yb-width);
+    height: var(--yb-width);
+    background-color: yellow;
+    border-radius: 50%;
+    clip-path: var(--mouth-polygon2);
+    animation: mouthClosing .5s infinite alternate-reverse;
 }
 
 @keyframes course {
@@ -112,21 +110,23 @@ div.yb2 {
     }
 }
 
-@keyframes mo1 {
+@keyframes mouthOpening {
     from {
-        transform: rotate(45deg);
+        clip-path: var(--mouth-polygon);
+
     }
     to {
-        transform: rotate(0);
+        clip-path: polygon(50% 50%, 100% -5%, 100% 50%);
     }
 }
 
-@keyframes mo2 {
+@keyframes mouthClosing {
     from {
-        transform: rotate(45deg);
+        clip-path: var(--mouth-polygon2);
+
     }
     to {
-        transform: rotate(90deg);
+        clip-path: polygon(50% 50%, 100% 105%, 100% 50%);
     }
 }
 
@@ -217,8 +217,8 @@ div.emoji {
     height: var(--emoji-width);
     width: var(--emoji-width);
     border-radius: 50%;
-    background-color: var(--emoji-color);
-    box-shadow: inset 0px 0px 10px #b58200;
+    background: var(--emoji-linear-gradient);
+    /* box-shadow: inset 0px 0px 55x black; */
 }
 
 div.emoji1 {
@@ -258,6 +258,7 @@ div.em-eyb {
 
 div.em-mouth {
     position: absolute;
+    display: flex;
     bottom: 30px;
     width: var(--emoji-mouth-width);
     border-top: 5px solid var(--emoji-color-darked);
@@ -279,6 +280,11 @@ div.em2-ey2 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+div.em2-tongue {
+    position: absolute;
+    background-color: #d1908e;
 }
 
 div.em3-eyb {
