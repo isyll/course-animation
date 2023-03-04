@@ -16,6 +16,7 @@
     --emoji-mouth-width: 40px;
     --mouth-polygon: polygon(50% 50%, 100% -5%, 100% 0%);
     --mouth-polygon2: polygon(50% 50%, 100% 105%, 100% 100%);
+    --tongue-color: #d1908e;
 }
 
 * {
@@ -202,11 +203,12 @@ div.eye-ball2 {
 }
 
 div.emojis {
-    width: 60%;
+    width: 100%;
     height: 300px;
     display: flex;
     justify-content: center;
     gap: 25px;
+    flex-basis: var(--emoji-width);
 }
 
 div.emoji {
@@ -259,11 +261,14 @@ div.em-eyb {
 div.em-mouth {
     position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center;
     bottom: 30px;
     width: var(--emoji-mouth-width);
     border-top: 5px solid var(--emoji-color-darked);
     border-bottom: 5px solid var(--emoji-color-darked);
     border-radius: 50%;
+    box-shadow: inset 0px 0px 50px white;
 }
 
 div.em2-ey1 {
@@ -284,7 +289,27 @@ div.em2-ey2 {
 
 div.em2-tongue {
     position: absolute;
-    background-color: #d1908e;
+    top: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: linear-gradient(var(--tongue-color), #cdb7b6);
+    box-shadow: inset 0px 0px 5px #bc4844;
+}
+
+div.mouth-half-circle {
+
+}
+
+div.tongue-vertical {
+    height: 100%;
+    width: 1px;
+    box-shadow: 0px 0px 1px grey;
+    background: linear-gradient(grey, var(--tongue-color));
 }
 
 div.em3-eyb {
